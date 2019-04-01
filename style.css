@@ -1,17 +1,16 @@
 *{
     padding: 0;
-    margin: 0px auto;
+    margin: 0;
     box-sizing: border-box;
 }
 section {
     padding: 38px;
     font-family: Arial, sans-serif;
     width: 1000px;
-
 }
 .product-card{
     border: 1px solid black;
-    padding: 45px 100px;
+    padding: 45px 93px;
     margin-bottom: 24px;
 }
 h1{
@@ -79,8 +78,8 @@ strong{
     width: 172px;
     height: 172px;
     position: absolute;
-    top: 153px;
-    left: 270px;
+    top: 16.5%;
+    left: 4%;
     font-size: 38px;
     color: white;
     font-weight: bold;
