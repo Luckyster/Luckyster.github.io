@@ -1,12 +1,13 @@
 *{
     padding: 0;
-    margin: 0;
+    margin: 0px auto;
     box-sizing: border-box;
 }
 section {
     padding: 38px;
     font-family: Arial, sans-serif;
     width: 1000px;
+
 }
 .product-card{
     border: 1px solid black;
@@ -79,7 +80,7 @@ strong{
     height: 172px;
     position: absolute;
     top: 153px;
-    left: 60px;
+    left: 270px;
     font-size: 38px;
     color: white;
     font-weight: bold;
