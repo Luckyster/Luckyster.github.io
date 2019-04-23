@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+.header{
+    background: linear-gradient(
+            rgba(14, 8, 52, 0.85),
+            rgba(14, 8, 52, 0.85)
+    ) ,url(../img/header_bg.png);
+    background-size: auto;
+    color: white;
+}
+.header__wrapper{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+.main-nav{
+    display: flex;
+    align-items: center;
+}
+.site-list{
+    display: flex;
+    justify-content: space-between;
+}
+.site-list__item{
+    list-style-type: none;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+.about-us{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 200px;
+
+}
+.about-us__wrapper{
+    text-align: center;
+}
+.about-us__title{
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+.about-us__separator{
+    width: 50px;
+    border-color: #00e0d0;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.site-list__link{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.site-list__link:hover{
+    text-decoration: underline;
+}
+.site-list__link--active{
+    color: #00e0d0;
+}
+.about-us__description{
+    margin-bottom: 65px;
+}
+.button-link{
+    font-family: 'Hammersmith One', sans-serif;
+    text-transform: uppercase;
+    color: #00e0d0;
+    font-size: 16px;
+    padding: 13px 15px;
+    border: 1px solid #00e0d0;
+    text-decoration: none;
+}
+.button-link:hover{
+    text-decoration: underline;
+}
+.about-us__toggles{
+    display: flex;
+    align-items: flex-end;
+}
+.hidden{
+    visibility: hidden;
+}
+.page-main{
+    width: 60%;
+    margin: 0 auto;
+}
+.our-story{
+    background-color: white;
+    color: black;
+    margin: 70px auto;
+    display: flex;
+    justify-content: space-between;
+}
+.our-story__wrapper{
+    margin-left: 100px;
+}
+.our-story__title{
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.our-story__description{
+    margin-bottom: 30px;
+}
+
