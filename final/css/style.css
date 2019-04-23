@@ -82,6 +82,7 @@ body {
     padding: 13px 15px;
     border: 1px solid #00e0d0;
     text-decoration: none;
+    display: inline-block;
 }
 .button-link:hover{
     text-decoration: underline;
