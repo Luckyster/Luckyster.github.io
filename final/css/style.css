@@ -17,7 +17,7 @@ img{
             rgba(14, 8, 52, 0.85),
             rgba(14, 8, 52, 0.85)
     ) ,url(../img/header_bg.jpg);
-    background-size: auto;
+    background-size: cover;
     color: white;
 }
 .header__wrapper{
@@ -83,7 +83,7 @@ img{
     text-transform: uppercase;
     color: #00e0d0;
     font-size: 16px;
-    padding: 13px 15px;
+    padding: 13px 15px 11px;
     border: 1px solid #00e0d0;
     text-decoration: none;
     display: inline-block;
@@ -106,9 +106,12 @@ img{
     display: flex;
     justify-content: space-between;
 }
+.our-story__image{
+    padding: 10px;
+}
 .our-story__wrapper{
     max-width: 50%;
-    margin-left: 100px;
+    margin-left: 7%;
 }
 .our-story__title{
     font-family: 'Playfair Display', serif;
@@ -125,7 +128,7 @@ img{
             rgba(14, 8, 52, 0.85),
             rgba(14, 8, 52, 0.85)
     ) ,url(../img/video-story_bg.jpg);
-    background-size: auto;
+    background-size: cover;
 }
 .video-story__wrapper{
     max-width: 60%;
@@ -217,7 +220,7 @@ img{
     background: linear-gradient(
             rgba(14, 8, 52, 0.85),
             rgba(14, 8, 52, 0.85)
-    ) ,url(../img/header_bg.jpg);
+    ) ,url(../img/our-team__bg.jpg);
     background-size: cover;
     color: #c6c4c9;
 }
@@ -242,7 +245,7 @@ img{
     display: flex;
     padding-bottom: 50px;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 .team-member__item{
     margin-bottom: 20px;
@@ -283,4 +286,155 @@ img{
 }
 .our-team__button-link{
     text-align: center;
+}
+.our-works{
+    background-color: white;
+    color: #c6c4c9;
+    margin: 70px 0;
+}
+.our-works__wrapper{
+    display: flex;
+    justify-content: space-between;
+    max-width: 60%;
+    margin: auto;
+    margin-bottom: 70px;
+}
+.our-works__title{
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #413d4b;
+}
+.our-works__link{
+    display: block;
+    margin: auto 0;
+}
+.our-works__link a{
+    font-weight: lighter;
+    color: #c6c4c9;
+    text-decoration: none;
+}
+.our-works__link:hover{
+    text-decoration: underline;
+}
+.our-works__gallery{
+    margin-bottom: 70px;
+
+}
+.gallery{
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+.gallery__image{
+    flex-basis: 16.66%;
+}
+.gallery__image img{
+    display: block;
+    margin: auto;
+    object-fit: fill;
+}
+.our-works__button-link{
+    text-align: center;
+}
+.reviews{
+    background: linear-gradient(
+            rgba(14, 8, 52, 0.85),
+            rgba(14, 8, 52, 0.85)
+    ) ,url(../img/reviews__bg.jpg);
+    background-size: cover;
+    color: #c6c4c9;
+}
+.reviews__wrapper{
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 70px 0;
+}
+.reviews__quote{
+    width: 32px;
+    height: 26px;
+    background-image: url(../img/reviews__quote.png);
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+.reviews__description{
+    text-align: center;
+    margin-bottom: 55px;
+}
+.reviews__title{
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: white;
+}
+.reviews__caption{
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    font-weight: lighter;
+}
+.reviews__slider{
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: 0 auto;
+    align-items: center;
+}
+.reviews__avatar{
+    width: 45px;
+    height: 45px;
+    margin-left: 14px;
+    background-image: url(../img/reviews__avatar.jpg);
+    border-radius: 22.5px;
+    background-size: cover;
+}
+.reviews__avatar--active{
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+}
+.reviews__avatar--1{
+    background-image: url(../img/reviews__avatar--1.jpg);
+}
+.reviews__avatar--2{
+    background-image: url(../img/reviews__avatar--2.jpg);
+}
+.reviews__avatar--3{
+    background-image: url(../img/reviews__avatar--3.jpg);
+}
+.reviews__avatar--4{
+    background-image: url(../img/reviews__avatar--4.jpg);
+}
+.reviews__arrow{
+    display: block;
+    width: 16px;
+    height: 21px;
+    background-image: url(../img/right-arrow.svg);
+    background-size: cover;
+}
+.reviews__arrow--left{
+    float: left;
+    transform: rotate(180deg);
+}
+
+@media screen and (max-width: 1100px) {
+    .team-member{
+        flex-wrap: wrap;
+        padding-bottom: 30px;
+    }
+    .team-member__item{
+        max-width: 164px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .team-member__con{
+        flex-basis: 40%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .gallery__image{
+        flex-basis: 33.33%;
+    }
 }
