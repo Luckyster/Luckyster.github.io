@@ -435,6 +435,7 @@ img{
     display: flex;
     flex-wrap: wrap;
     flex-basis: 200%;
+    margin-bottom: 70px;
 }
 .feedback-form__title{
     font-family: 'Playfair Display', serif;
@@ -463,7 +464,6 @@ img{
  }
 .feedback-form__button{
     background-color: white;
-    margin-bottom: 20px;
     float: bottom;
 }
 .our-customers{
@@ -516,7 +516,27 @@ img{
     .feedback-form{
         flex-basis: 100%;
     }
+    .feedback-form__button{
+        text-align: right;
+    }
     .our-customers{
         flex-basis: 100%;
+        margin-left: 0;
+    }
+    .our-customers__wrapper{
+        justify-content: space-around;
+    }
+    .our-customers__image:nth-child(even){
+        margin-left: 0;
+    }
+    .our-customers__title{
+        text-align: center;
+    }
+}
+@media screen and (max-width: 425px){
+    .header__wrapper,.our-story,.about-us,.services,
+    .video-story__wrapper,.footer__wrapper,
+    .reviews__wrapper,.our-works__wrapper{
+        max-width: 90%;
     }
 }
