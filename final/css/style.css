@@ -418,6 +418,79 @@ img{
     float: left;
     transform: rotate(180deg);
 }
+.reviews__arrow--right{
+    margin-left: 14px;
+}
+.footer{
+    background-color: white;
+    color: #c6c4c9;
+    margin: 70px 0;
+}
+.footer__wrapper{
+    max-width: 60%;
+    margin: 0 auto;
+    display: flex;
+}
+.feedback-form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 200%;
+}
+.feedback-form__title{
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #413d4b;
+    margin-bottom: 35px;
+}
+.feedback-form input[type="text"]{
+    padding: 3% ;
+    margin-bottom: 25px;
+    flex-basis: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    border: 1px solid #c6c4c9;
+}
+.feedback-form textarea{
+     flex-basis: 100%;
+     padding: 3%;
+     height: 30%;
+     resize: none;
+     margin-bottom: 25px;
+     font-family: 'Roboto', sans-serif;
+     font-size: 14px;
+     border: 1px solid #c6c4c9;
+ }
+.feedback-form__button{
+    background-color: white;
+    margin-bottom: 20px;
+    float: bottom;
+}
+.our-customers{
+    margin-left: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.our-customers__title{
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #413d4b;
+    margin-bottom: 35px;
+    flex-basis: 100%;
+}
+.our-customers__wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.our-customers__image{
+    flex-basis: 40%;
+    margin: 7% 0;
+}
+.our-customers__image:nth-child(even){
+    margin-left: 15%;
+}
 
 @media screen and (max-width: 1100px) {
     .team-member{
@@ -436,5 +509,14 @@ img{
 @media screen and (max-width: 600px) {
     .gallery__image{
         flex-basis: 33.33%;
+    }
+    .footer__wrapper{
+        flex-wrap: wrap;
+    }
+    .feedback-form{
+        flex-basis: 100%;
+    }
+    .our-customers{
+        flex-basis: 100%;
     }
 }
