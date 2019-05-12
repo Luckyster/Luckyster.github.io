@@ -421,12 +421,12 @@ img{
 .reviews__arrow--right{
     margin-left: 14px;
 }
-.footer{
+.feedback{
     background-color: white;
     color: #c6c4c9;
     margin: 70px 0;
 }
-.footer__wrapper{
+.feedback__wrapper{
     max-width: 60%;
     margin: 0 auto;
     display: flex;
@@ -491,6 +491,118 @@ img{
 .our-customers__image:nth-child(even){
     margin-left: 15%;
 }
+.footer{
+    background: linear-gradient(
+            rgba(14, 8, 52, 0.85),
+            rgba(14, 8, 52, 0.85)
+    ) ,url(../img/footer_bg.jpg);
+    background-size: cover;
+    color: #c6c4c9;
+}
+.footer__company{
+    margin-bottom: 60px;
+}
+.footer__wrapper{
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 70px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.footer__company{
+    flex-basis: 31%;
+}
+.footer__logo{
+    margin-bottom: 20px;
+    max-width: 45%;
+}
+.footer__description{
+    line-height: 1.5;
+}
+.our-contacts{
+    flex-basis: 31%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+.our-contacts__title{
+    display: block;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    flex-basis: 100%;
+}
+.our-contacts__icon{
+    display: block;
+    width: 14px;
+    height: 19px;
+    background-image: url(../img/footer-icon__1.png);
+    background-size: cover;
+}
+.our-contacts__icon--1{
+    width: 17px;
+    height: 17px;
+    background-image: url(../img/footer-icon__2.png);
+}
+.our-contacts__tel{
+    flex-basis: 90%;
+    text-align: left;
+}
+.our-contacts__description{
+    flex-basis: 90%;
+    line-height: 1.5;
+}
+.our-social{
+    flex-basis: 31%;
+    margin-bottom: 60px;
+}
+.our-social__title{
+    display: block;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    flex-basis: 100%;
+}
+.our-social__input{
+    border: 1px solid #c6c4c9;
+    padding: 2px;
+    background-color: #11ffee00;
+    float: left;
+    height: 45px;
+    width: 65%;
+    margin-bottom: 20px;
+}
+.our-social__input::placeholder{
+    color: #c6c4c9;
+}
+.our-social__button{
+    background: url(../img/our-social__submit.png) no-repeat center,
+                linear-gradient(
+                        rgba(255, 255, 255, 0.4),
+                        rgba(255, 255, 255, 0.4)
+                );
+    border: none;
+    height: 45px;
+    width: 70px;
+    cursor: pointer;
+    margin-left: 5px;
+    text-indent: -9999em;
+    margin-bottom: 20px;
+}
+.our-social__link{
+    margin: 0;
+    margin-right: 5px;
+}
+.footer__nav{
+    font-weight: normal;
+}
+
 
 @media screen and (max-width: 1100px) {
     .team-member{
@@ -510,7 +622,7 @@ img{
     .gallery__image{
         flex-basis: 33.33%;
     }
-    .footer__wrapper{
+    .feedback__wrapper{
         flex-wrap: wrap;
     }
     .feedback-form{
@@ -536,7 +648,7 @@ img{
 @media screen and (max-width: 425px){
     .header__wrapper,.our-story,.about-us,.services,
     .video-story__wrapper,.footer__wrapper,
-    .reviews__wrapper,.our-works__wrapper{
+    .reviews__wrapper,.our-works__wrapper,.footer{
         max-width: 90%;
     }
 }
