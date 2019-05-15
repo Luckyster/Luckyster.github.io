@@ -172,7 +172,7 @@ img{
     justify-content: space-between;
 }
 .expertise__item{
-    padding: 22px;
+    padding: 4%;
     border-right: 1px solid #c6c4c9;
     width: 33.3%;
 }
@@ -435,7 +435,7 @@ img{
     display: flex;
     flex-wrap: wrap;
     flex-basis: 200%;
-    margin-bottom: 70px;
+    margin-bottom: 90px;
 }
 .feedback-form__title{
     font-family: 'Playfair Display', serif;
@@ -688,5 +688,31 @@ img{
     .our-social__title{
         text-align: center;
     }
-
+    .reviews__avatar{
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+    }
+    .reviews__avatar--active{
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+    }
+    .expertise__item{
+        padding: 4%;
+        border-right: 1px solid #c6c4c9;
+        width: 50%;
+    }
+    .expertise__item:nth-child(-n+2){
+        border-bottom: 1px solid #c6c4c9;
+    }
+    .expertise__item:nth-child(even){
+        border-right: none;
+    }
+    .expertise__item:nth-child(3){
+        border-right: 1px solid #c6c4c9;
+    }
+    .expertise__item:nth-child(4){
+        border-bottom: 1px solid #c6c4c9;
+    }
 }
