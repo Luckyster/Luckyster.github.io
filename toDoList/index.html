@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="toDoList__wrapper">
+        <h1 class="toDoList__title">Todolist</h1>
+        <input type="text" name="Task" placeholder="Task"
+               class="toDoList__input">
+        <button class="toDoList__button">Add</button>
+    </div>
+    <div class="toDoList__filters">
+        <div class="arrow__wrapper">
+            <div class="toDoList__arrow"></div>
+        </div>
+        <div class="toDoList__sortArrow"></div>
+        <input type="text" name="search" placeholder='&#xf002;'
+               class="toDoList__input toDoList__search">
+        <div class="toDoList__filter"></div>
+    </div>
+    <div class="toDoList__item">
+        <div class="toDoList__date">12.10.2018<br>13:24</div>
+        <div class="toDoList__importanceCounter">5</div>
+        <div class="toDoList_importanceTrigger">
+            <div class="toDoList__arrowBottom toDoList__arrowUp"></div>
+            <div class="toDoList__arrowBottom"></div>
+        </div>
+        <div class="toDoList__description">Task for exampleTask for exampleTask for exampleTask for exampleTask for exampleTask for example</div>
+        <div class="toDoList__controlButton toDoList__controlButton--pencil"></div>
+        <div class="toDoList__controlButton"></div>
+        <div class="toDoList__controlButton toDoList__controlButton--rubbish"></div>
+    </div>
+    <div class="deleteMenu__wrapper">
+        <div class="deleteMenu">
+            <div class="deleteMenu__description">
+                Delete item?
+            </div>
+            <button class="toDoList__button deleteMenu__button deleteMenu__button--no">No</button>
+            <button class="toDoList__button deleteMenu__button">Yes</button>
+        </div>
+        <div class="editMenu">
+            <div class="editMenu__description">
+                Edit text
+            </div>
+            <textarea class="editMenu__input" name="massage" placeholder="Edit Task" spellcheck="false" data-gramm="false"></textarea>
+            <button class="toDoList__button deleteMenu__button deleteMenu__button--no">No</button>
+            <button class="toDoList__button deleteMenu__button">Yes</button>
+        </div>
+    </div>
+</body>
+</html>
