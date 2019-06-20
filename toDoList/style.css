@@ -94,10 +94,11 @@ body{
 .toDoList__item{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 70%;
     flex-wrap: wrap;
     padding-left: 5%;
-    border-right: 2px solid #9c9696;
+    margin-bottom: 10px;
 }
 .toDoList__date{
     text-align: center;
@@ -130,26 +131,28 @@ body{
 .toDoList__controlButton{
     width: 35px;
     height: 35px;
-    background-image: url(img/tick.svg);
+    background-image: url(img/pencil.svg);
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #0097f4;
+    background-color: #3f8c3f;
     border-radius: 50%;
     box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.50);
-    margin-top: 1%;
     cursor: pointer;
+}
+.toDoList__checkbox{
+    background-image: url(img/tick.svg);
+    background-color: #0097f4;
 }
 .toDoList__controlButton--pencil{
     background-image: url(img/pencil.svg);
-    background-color: #3f8c3f;
 }
 .toDoList__controlButton--rubbish{
     background-image: url(img/rubbish.svg);
     background-color: #3f8c3f;
 }
-.toDoList__controlButton--inactive{
-    background-color: rgba(0, 151, 244, 0.3);
+.toDoList__checkbox--inactive{
+    background-color: rgba(0, 151, 244, 0.4);
 }
 .deleteMenu__wrapper{
     display: none;
