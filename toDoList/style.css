@@ -165,7 +165,6 @@ body{
     background-color: rgba(70, 71, 70, 0.8);
 }
 .deleteMenu{
-    display: none;
     position: absolute;
     left: 75%;
     top: 5%;
@@ -193,7 +192,6 @@ body{
     box-shadow: none;
 }
 .editMenu{
-    display: none;
     position: absolute;
     left: 75%;
     top: 5%;
@@ -204,6 +202,9 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+.editMenu__wrapper{
+    display: none;
 }
 .editMenu__description{
     text-align: center;

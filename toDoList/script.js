@@ -80,23 +80,44 @@ function bindEvents(toDoItem){
     const checkButton = toDoItem.querySelector('.toDoList__checkbox');
     const editButton = toDoItem.querySelector('.toDoList__controlButton--pencil');
     const deleteButton = toDoItem.querySelector('.toDoList__controlButton--rubbish');
-
     checkButton.addEventListener('click', checkToDoItem);
-    editButton.addEventListener('click', editToDoItem);
-    deleteButton.addEventListener('click', deleteToDoItem);
+    editButton.addEventListener('click', openEditMenu);
+    deleteButton.addEventListener('click', openDeleteMenu);
 }
 function checkToDoItem() {
     this.classList.toggle('toDoList__checkbox--inactive');
 }
-function editToDoItem() {
+function openEditMenu() {
+    const editMenu = document.querySelector('.editMenu__wrapper');
+    const deleteMenu = document.querySelector('.deleteMenu__wrapper');
+    const saveButton = document.getElementById("editButton__yes");
+    const cancelButton = document.getElementById("editButton__no");
     const listItem = this.parentNode;
-    const editMenu = document.querySelector('.deleteMenu__wrapper');
-    const editInput = document.querySelector('.editMenu__input');
-    const saveButton = document.querySelector('.deleteMenu__button--yes');
-    const cancelButton = document.querySelector('.deleteMenu__button--no');
-
     editMenu.style.display = 'block';
-    cancelButton.addEventListener('click',);//here
+    deleteMenu.style.display = 'block';
+    cancelButton.addEventListener('click', function(){
+        editMenu.style.display = 'none';
+        deleteMenu.style.display = 'none';
+    });
+    saveButton.addEventListener('click', editToDoItem.bind(listItem));
+    // bind for saving "this" for another function
+}
+function editToDoItem(){
+    const editMenu = document.querySelector('.editMenu__wrapper');
+    const deleteMenu = document.querySelector('.deleteMenu__wrapper');
+    const editInput = document.querySelector('.editMenu__input');
+    let itemDescription = this.querySelector(".toDoList__description").innerText;
+    if(editInput.value === ''){
+        return alert("Input is empty")
+    }
+    for(let i = 0; i < itemsArray.length; i++) {
+        if (itemDescription === itemsArray[i].title) {
+            itemsArray[i].title = editInput.value;
+        }
+    }
+    editMenu.style.display = 'none';
+    deleteMenu.style.display = 'none';
+    drawToDoItems(itemsArray);
 }
 function deleteAllItems() {
     let toDoItems = document.querySelectorAll('.toDoList__item');
@@ -105,16 +126,29 @@ function deleteAllItems() {
         toDoList.removeChild(deleteItem);
     }
 }
-function deleteToDoItem() {
+function openDeleteMenu() {
+    const deleteMenu = document.querySelector('.deleteMenu');
+    const deleteWrapper = document.querySelector('.deleteMenu__wrapper');
+    const saveButton = document.getElementById("deleteMenuButton--yes");
+    const cancelButton = document.getElementById("deleteMenuButton--no");
     const listItem = this.parentNode;
-    let itemDescription = this.parentNode.querySelector(".toDoList__description").innerText;
+    deleteWrapper.style.display = 'block';
+    cancelButton.addEventListener('click', function(){
+        deleteWrapper.style.display = 'none';
+        deleteMenu.style.display = 'none';
+    });
+    saveButton.addEventListener('click', deleteToDoItem.bind(listItem));
+}
+function deleteToDoItem() {
+    const deleteWrapper = document.querySelector('.deleteMenu__wrapper');
+    const itemDescription = this.querySelector('.toDoList__description').innerText;
     for(let i = 0; i < itemsArray.length; i++){
         if(itemDescription === itemsArray[i].title){
             itemsArray.splice(i, 1);
         }
     }
-    toDoList.removeChild(listItem);
-    console.log(itemsArray);
+    deleteWrapper.style.display = 'none';
+    drawToDoItems(itemsArray);
 }
 const toDoForm = document.getElementById('toDoForm');
 const addInput = document.getElementById('addInput');

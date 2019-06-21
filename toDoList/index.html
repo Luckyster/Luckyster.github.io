@@ -42,16 +42,18 @@
             <div class="deleteMenu__description">
                 Delete item?
             </div>
-            <button class="toDoList__button deleteMenu__button deleteMenu__button--no">No</button>
-            <button class="toDoList__button deleteMenu__button">Yes</button>
+            <button id="deleteMenuButton--no" class="toDoList__button deleteMenu__button deleteMenu__button--no">No</button>
+            <button id="deleteMenuButton--yes" class="toDoList__button deleteMenu__button deleteMenu__button--yes">Yes</button>
         </div>
-        <div class="editMenu">
-            <div class="editMenu__description">
-                Edit text
+        <div class="editMenu__wrapper">
+            <div class="editMenu">
+                <div class="editMenu__description">
+                    Edit text
+                </div>
+                <textarea class="editMenu__input" name="massage" placeholder="Edit Task" spellcheck="false" data-gramm="false"></textarea>
+                <button id="editButton__no"  class="toDoList__button deleteMenu__button deleteMenu__button--no">No</button>
+                <button id="editButton__yes" class="toDoList__button deleteMenu__button deleteMenu__button--yes">Yes</button>
             </div>
-            <textarea class="editMenu__input" name="massage" placeholder="Edit Task" spellcheck="false" data-gramm="false"></textarea>
-            <button class="toDoList__button deleteMenu__button deleteMenu__button--no">No</button>
-            <button class="toDoList__button deleteMenu__button deleteMenu__button--yes">Yes</button>
         </div>
     </div>
     <script src="script.js"></script>
