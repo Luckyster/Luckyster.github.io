@@ -63,7 +63,7 @@ function addToDoItem(event) {
     if(addInput.value === ''){
         return alert("Input is empty")
     }
-    if(localStorage.length > 0){
+    if(localStorage.length > 0 && localStorage.getItem(localStorage.length + '') === null){
         idCounter = localStorage.length;
     }else {
         idCounter = 0;
@@ -83,12 +83,12 @@ function addToDoItem(event) {
 }
 function  parseToDoItems(){
     itemsArray = [];
-    let i = 0;
-    while(localStorage.getItem(i+'')){
-        let itemObject;
-        itemObject = JSON.parse(localStorage.getItem(i+''));
-        itemsArray.push(itemObject);
-        i++;
+    for(let i = 0; i < localStorage.length; i++){
+        if(localStorage.getItem(i+'')) {
+            let itemObject;
+            itemObject = JSON.parse(localStorage.getItem(i + ''));
+            itemsArray.push(itemObject);
+        }
     }
     console.log(itemsArray);
 }
@@ -146,7 +146,7 @@ function openEditMenu() {
     const saveButton = document.getElementById("editButton__yes");
     const cancelButton = document.getElementById("editButton__no");
     const editInput = document.querySelector('.editMenu__input');
-    const listItem = this.parentNode;
+    let listItem = this.parentNode;
     editInput.value = '';
     editMenu.style.display = 'block';
     deleteMenu.style.display = 'block';
@@ -199,13 +199,23 @@ function openDeleteMenu() {
 }
 function deleteToDoItem() {
     const deleteWrapper = document.querySelector('.deleteMenu__wrapper');
-    const itemDescription = this.querySelector('.toDoList__description').innerText;
+    let itemId = this.querySelector('.toDoList__number').innerText;
+    itemId = parseInt(itemId);
     for(let i = 0; i < itemsArray.length; i++){
-        if(itemDescription === itemsArray[i].title){
-            itemsArray.splice(i, 1);
+        if(itemId === itemsArray[i].id){
+            for(b = itemId; b < localStorage.length; b++){
+                if(localStorage.getItem(b + 1) != null){
+                    let tempObject = JSON.parse(localStorage.getItem(b + 1));
+                    tempObject.id = tempObject.id - 1;
+                    JSON.stringify(tempObject);
+                    localStorage.setItem(b, JSON.stringify(tempObject));
+                }
+            }
         }
     }
+    localStorage.removeItem((localStorage.length - 1));
     deleteWrapper.style.display = 'none';
+    parseToDoItems();
     drawToDoItems(itemsArray);
 }
 const toDoForm = document.getElementById('toDoForm');
