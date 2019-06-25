@@ -10,6 +10,9 @@ body{
 .toDoList__title{
     font-weight: normal;
 }
+.toDoList__number{
+    display: none;
+}
 .toDoList__wrapper{
     width: 85%;
     display: flex;
@@ -117,6 +120,10 @@ body{
     text-align: center;
     flex-basis: 50%;
 }
+.toDoList__description--done{
+    text-decoration: line-through;
+    background-color: #d1eef4;
+}
 .toDoList__arrowBottom{
     display: block;
     width: 17px;
@@ -163,6 +170,9 @@ body{
     left: 0;
     z-index: 2;
     background-color: rgba(70, 71, 70, 0.8);
+}
+.deleteMenu__wrapper1{
+    display: none;
 }
 .deleteMenu{
     position: absolute;

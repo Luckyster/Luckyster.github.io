@@ -1,6 +1,9 @@
 function drawToDoItems(itemsArray) {
     deleteAllItems(toDoItems);
     for(let i = 0; i < itemsArray.length; i++){
+        const itemNumber = document.createElement('div');
+        itemNumber.innerText = itemsArray[i].id;
+        itemNumber.className = "toDoList__number";
         const itemDate = document.createElement('div');
         itemDate.innerText = itemsArray[i].date + "\n" + itemsArray[i].time;
         itemDate.className = "toDoList__date";
@@ -21,19 +24,28 @@ function drawToDoItems(itemsArray) {
         itemImportanceTrigger.appendChild(itemArrowDown);
 
         const itemDescription = document.createElement('div');
-        itemDescription.className = "toDoList__description";
+        if(itemsArray[i].isDone === true){
+            itemDescription.className = "toDoList__description toDoList__description--done";
+        }else{
+            itemDescription.className = "toDoList__description";
+        }
         itemDescription.innerText = itemsArray[i].title;
 
         const itemEditButton = document.createElement('div');
         itemEditButton.className = "toDoList__controlButton toDoList__controlButton--pencil";
         const itemDoneButton = document.createElement('div');
-        itemDoneButton.className = "toDoList__controlButton toDoList__checkbox";
+        if(itemsArray[i].isDone === true){
+            itemDoneButton.className = "toDoList__controlButton toDoList__checkbox toDoList__checkbox--inactive";
+        } else{
+            itemDoneButton.className = "toDoList__controlButton toDoList__checkbox";
+        }
         const itemDeleteButton = document.createElement('div');
         itemDeleteButton.className = "toDoList__controlButton toDoList__controlButton--rubbish";
 
         const listItem = document.createElement('li');
         listItem.className = "toDoList__item";
 
+        listItem.appendChild(itemNumber);
         listItem.appendChild(itemDate);
         listItem.appendChild(itemImportanceCounter);
         listItem.appendChild(itemImportanceTrigger);
@@ -47,13 +59,12 @@ function drawToDoItems(itemsArray) {
 }
 function addToDoItem(event) {
     event.preventDefault();//dont sent data on server
-
+    var idCounter;
     if(addInput.value === ''){
         return alert("Input is empty")
     }
-    let idCounter;
-    if(itemsArray.length > 0){
-        idCounter = itemsArray[itemsArray.length - 1].id + 1;
+    if(localStorage.length > 0){
+        idCounter = localStorage.length;
     }else {
         idCounter = 0;
     }
@@ -62,19 +73,48 @@ function addToDoItem(event) {
         title: addInput.value,
         date: getDateNow(),
         time: getTimeNow(),
-        importance: 1
+        importance: 1,
+        isDone: false
     };
-    itemsArray.push(toDoObj);
+    localStorage.setItem(idCounter+'', JSON.stringify(toDoObj));
+    parseToDoItems();
     drawToDoItems(itemsArray);
     addInput.value = '';
 }
+function  parseToDoItems(){
+    itemsArray = [];
+    let i = 0;
+    while(localStorage.getItem(i+'')){
+        let itemObject;
+        itemObject = JSON.parse(localStorage.getItem(i+''));
+        itemsArray.push(itemObject);
+        i++;
+    }
+    console.log(itemsArray);
+}
 function getDateNow() {
     const date = new Date();
-    return  date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear();
+    let day = date.getDay();
+    let month = date.getMonth();
+    if(day < 10){
+        day = '0' + day;
+    }
+    if(month < 10){
+        month = '0' + month;
+    }
+    return  day + '.' + month + '.' + date.getFullYear();
 }
 function getTimeNow() {
     const date = new Date();
-    return  date.getHours() + ":" + date.getMinutes();
+    let minutes = date.getMinutes();
+    let hours = date.getHours();
+    if(minutes < 10){
+        minutes = '0' + minutes;
+    }
+    if(hours < 10){
+        hours = '0' + hours;
+    }
+    return  hours + ":" + minutes;
 }
 function bindEvents(toDoItem){
     const checkButton = toDoItem.querySelector('.toDoList__checkbox');
@@ -86,13 +126,28 @@ function bindEvents(toDoItem){
 }
 function checkToDoItem() {
     this.classList.toggle('toDoList__checkbox--inactive');
+    const itemTitle = this.parentNode.querySelector('.toDoList__description');
+    itemTitle.classList.toggle('toDoList__description--done');
+    let itemId = this.parentNode.querySelector('.toDoList__number').innerText;
+    for(let i = 0; i < itemsArray.length; i++) {
+        if (itemId == itemsArray[i].id) {
+            if(itemsArray[i].isDone === true){
+                itemsArray[i].isDone = false;
+            }else {
+                itemsArray[i].isDone = true;
+            }
+            localStorage.setItem(i + '', JSON.stringify(itemsArray[i]));
+        }
+    }
 }
 function openEditMenu() {
     const editMenu = document.querySelector('.editMenu__wrapper');
     const deleteMenu = document.querySelector('.deleteMenu__wrapper');
     const saveButton = document.getElementById("editButton__yes");
     const cancelButton = document.getElementById("editButton__no");
+    const editInput = document.querySelector('.editMenu__input');
     const listItem = this.parentNode;
+    editInput.value = '';
     editMenu.style.display = 'block';
     deleteMenu.style.display = 'block';
     cancelButton.addEventListener('click', function(){
@@ -106,13 +161,15 @@ function editToDoItem(){
     const editMenu = document.querySelector('.editMenu__wrapper');
     const deleteMenu = document.querySelector('.deleteMenu__wrapper');
     const editInput = document.querySelector('.editMenu__input');
-    let itemDescription = this.querySelector(".toDoList__description").innerText;
+    let itemId = this.querySelector('.toDoList__number').innerText;
     if(editInput.value === ''){
         return alert("Input is empty")
     }
+    console.log(itemId);
     for(let i = 0; i < itemsArray.length; i++) {
-        if (itemDescription === itemsArray[i].title) {
+        if (itemId == itemsArray[i].id) {
             itemsArray[i].title = editInput.value;
+            localStorage.setItem(i + '', JSON.stringify(itemsArray[i]));
         }
     }
     editMenu.style.display = 'none';
@@ -127,12 +184,13 @@ function deleteAllItems() {
     }
 }
 function openDeleteMenu() {
-    const deleteMenu = document.querySelector('.deleteMenu');
+    const deleteMenu = document.querySelector('.deleteMenu__wrapper1');
     const deleteWrapper = document.querySelector('.deleteMenu__wrapper');
     const saveButton = document.getElementById("deleteMenuButton--yes");
     const cancelButton = document.getElementById("deleteMenuButton--no");
     const listItem = this.parentNode;
     deleteWrapper.style.display = 'block';
+    deleteMenu.style.display = 'block';
     cancelButton.addEventListener('click', function(){
         deleteWrapper.style.display = 'none';
         deleteMenu.style.display = 'none';
@@ -164,4 +222,6 @@ var itemsArray = [
     }
 */
 ];
+parseToDoItems();
+drawToDoItems(itemsArray);
 toDoForm.addEventListener('submit', addToDoItem);

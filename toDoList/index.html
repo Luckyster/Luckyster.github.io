@@ -25,6 +25,7 @@
     </div>
     <ul id="toDoList" class="toDoList">
         <!--<li id="toDoItem" class="toDoList__item">
+            <div  class="toDoList__number"></div>
             <div class="toDoList__date">12.10.2018<br>13:24</div>
             <div class="toDoList__importanceCounter">5</div>
             <div class="toDoList_importanceTrigger">
@@ -32,18 +33,20 @@
                 <div class="toDoList__arrowBottom"></div>
             </div>
             <div class="toDoList__description">Task for exampleTask for exampleTask for exampleTask for exampleTask for exampleTask for example</div>
-            <div class="toDoList__controlButton toDoList__controlButton--pencil"></div>
-            <div class="toDoList__controlButton toDoList__checkbox"></div>
+            <div class="toDoList__controlButton toDoList__controlButton--pencil "></div>
+            <div class="toDoList__controlButton toDoList__checkbox toDoList__checkbox--inactive"></div>
             <div class="toDoList__controlButton toDoList__controlButton--rubbish"></div>
         </li>-->
     </ul>
     <div class="deleteMenu__wrapper">
-        <div class="deleteMenu">
+        <div class="deleteMenu__wrapper1">
+            <div class="deleteMenu">
             <div class="deleteMenu__description">
                 Delete item?
             </div>
             <button id="deleteMenuButton--no" class="toDoList__button deleteMenu__button deleteMenu__button--no">No</button>
             <button id="deleteMenuButton--yes" class="toDoList__button deleteMenu__button deleteMenu__button--yes">Yes</button>
+            </div>
         </div>
         <div class="editMenu__wrapper">
             <div class="editMenu">
