@@ -13,14 +13,16 @@ function drawToDoItems(itemsArray) {
         itemImportanceCounter.className = "toDoList__importanceCounter";
 
         const itemImportanceTrigger = document.createElement('div');
-        itemImportanceTrigger.className = "toDoList_importanceTrigger";
+        itemImportanceTrigger.className = "toDoList__importanceTrigger";
 
         const itemArrowUp = document.createElement('div');
         itemArrowUp.className = "toDoList__arrowBottom toDoList__arrowUp";
+        itemArrowUp.id = "arrowUp";
         itemImportanceTrigger.appendChild(itemArrowUp);
 
         const itemArrowDown = document.createElement('div');
-        itemArrowDown.className = "toDoList__arrowBottom";
+        itemArrowDown.className = "toDoList__arrowBottom toDoList__arrowDown";
+        itemArrowDown.id = "arrowDown";
         itemImportanceTrigger.appendChild(itemArrowDown);
 
         const itemDescription = document.createElement('div');
@@ -90,7 +92,7 @@ function  parseToDoItems(){
             itemsArray.push(itemObject);
         }
     }
-    console.log(itemsArray);
+    //console.log(itemsArray);
 }
 function getDateNow() {
     const date = new Date();
@@ -120,9 +122,103 @@ function bindEvents(toDoItem){
     const checkButton = toDoItem.querySelector('.toDoList__checkbox');
     const editButton = toDoItem.querySelector('.toDoList__controlButton--pencil');
     const deleteButton = toDoItem.querySelector('.toDoList__controlButton--rubbish');
+    const triggerUp = toDoItem.querySelector('.toDoList__arrowUp');
+    const triggerDown = toDoItem.querySelector('.toDoList__arrowDown');
+    const sortButton = document.querySelector('.toDoList__sortArrow');
+    const dateFilterButton = document.querySelector('.toDoList__arrow');
+    const searchButton = document.querySelector('.toDoList__filter');
+
+    triggerUp.addEventListener('click', changeImportance);
+    triggerDown.addEventListener('click', changeImportance);
     checkButton.addEventListener('click', checkToDoItem);
     editButton.addEventListener('click', openEditMenu);
     deleteButton.addEventListener('click', openDeleteMenu);
+    sortButton.addEventListener('click', sortArray);
+    dateFilterButton.addEventListener('click', filterDate);
+    searchButton.addEventListener('click', searchItem)
+}
+function searchItem() {
+    const searchInput = document.querySelector('.toDoList__search');
+    var resultObject = [];
+    for(let i = 0; i < itemsArray.length; i++){
+        if(itemsArray[i].title.indexOf(searchInput.value) !== -1){
+            resultObject.push(itemsArray[i]);
+        }
+    }
+    searchInput.value = '';
+    drawToDoItems(resultObject);
+}
+function filterDate() {
+        if(isDateFilterUsed === false){
+            function compare( a, b) {
+                if (a.id < b.id) {
+                    return 1;
+                }
+                if (a.id > b.id) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+            itemsArray.sort( compare );
+            isDateFilterUsed = true;
+            drawToDoItems(itemsArray);
+        }else{
+            parseToDoItems();
+            isDateFilterUsed = false;
+            drawToDoItems(itemsArray);
+        }
+
+}
+ function sortArray() {
+     if(isSortArrayUsed === false){
+         function compare( a, b) {
+             if (a.importance < b.importance) {
+                 return -1;
+             }
+             if (a.importance > b.importance) {
+                 return 1;
+             } else {
+                 return 0;
+             }
+         }
+         itemsArray.sort( compare );
+         isSortArrayUsed = true;
+         drawToDoItems(itemsArray);
+     } else {
+         function compare( a, b) {
+             if (a.importance < b.importance) {
+                 return 1;
+             }
+             if (a.importance > b.importance) {
+                 return -1;
+             } else {
+                 return 0;
+             }
+         }
+         itemsArray.sort( compare );
+         isSortArrayUsed = false;
+         drawToDoItems(itemsArray);
+     }
+}
+function changeImportance() {
+    let itemId = this.parentNode.parentNode.querySelector('.toDoList__number').innerText;
+    for(let i = 0; i < itemsArray.length; i++) {
+            if (itemId == itemsArray[i].id) {
+                const itemArrow = this.parentNode.parentNode.querySelector('.toDoList__arrowUp');
+                //console.log(this);
+                if(this == itemArrow){
+                    itemsArray[i].importance++;
+                }else{
+                    itemsArray[i].importance--;
+                    if(itemsArray[i].importance < 1){
+                        itemsArray[i].importance = 1;
+                    }
+                }
+                localStorage.setItem(i + '', JSON.stringify(itemsArray[i]));
+            }
+        }
+    drawToDoItems(itemsArray);
 }
 function checkToDoItem() {
     this.classList.toggle('toDoList__checkbox--inactive');
@@ -146,7 +242,7 @@ function openEditMenu() {
     const saveButton = document.getElementById("editButton__yes");
     const cancelButton = document.getElementById("editButton__no");
     const editInput = document.querySelector('.editMenu__input');
-    let listItem = this.parentNode;
+    tempContext = this.parentNode;
     editInput.value = '';
     editMenu.style.display = 'block';
     deleteMenu.style.display = 'block';
@@ -154,18 +250,18 @@ function openEditMenu() {
         editMenu.style.display = 'none';
         deleteMenu.style.display = 'none';
     });
-    saveButton.addEventListener('click', editToDoItem.bind(listItem));
+    saveButton.addEventListener('click', editToDoItem);
     // bind for saving "this" for another function
 }
 function editToDoItem(){
     const editMenu = document.querySelector('.editMenu__wrapper');
     const deleteMenu = document.querySelector('.deleteMenu__wrapper');
     const editInput = document.querySelector('.editMenu__input');
-    let itemId = this.querySelector('.toDoList__number').innerText;
+    let itemId = tempContext.querySelector('.toDoList__number').innerText;
     if(editInput.value === ''){
         return alert("Input is empty")
     }
-    console.log(itemId);
+    //console.log(itemId);
     for(let i = 0; i < itemsArray.length; i++) {
         if (itemId == itemsArray[i].id) {
             itemsArray[i].title = editInput.value;
@@ -188,18 +284,18 @@ function openDeleteMenu() {
     const deleteWrapper = document.querySelector('.deleteMenu__wrapper');
     const saveButton = document.getElementById("deleteMenuButton--yes");
     const cancelButton = document.getElementById("deleteMenuButton--no");
-    const listItem = this.parentNode;
+    tempContext = this.parentNode;
     deleteWrapper.style.display = 'block';
     deleteMenu.style.display = 'block';
     cancelButton.addEventListener('click', function(){
         deleteWrapper.style.display = 'none';
         deleteMenu.style.display = 'none';
     });
-    saveButton.addEventListener('click', deleteToDoItem.bind(listItem));
+    saveButton.addEventListener('click', deleteToDoItem);
 }
 function deleteToDoItem() {
     const deleteWrapper = document.querySelector('.deleteMenu__wrapper');
-    let itemId = this.querySelector('.toDoList__number').innerText;
+    let itemId = tempContext.querySelector('.toDoList__number').innerText;
     itemId = parseInt(itemId);
     for(let i = 0; i < itemsArray.length; i++){
         if(itemId === itemsArray[i].id){
@@ -222,6 +318,9 @@ const toDoForm = document.getElementById('toDoForm');
 const addInput = document.getElementById('addInput');
 const toDoList = document.getElementById('toDoList');
 const toDoItems = document.querySelectorAll('.toDoList__item');
+var isDateFilterUsed = false;
+var isSortArrayUsed = false;
+var tempContext; // bind is working with mistake
 var itemsArray = [
 /*{
     id: 0,
