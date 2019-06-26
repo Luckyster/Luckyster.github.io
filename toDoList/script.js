@@ -146,7 +146,11 @@ function searchItem() {
         }
     }
     searchInput.value = '';
-    drawToDoItems(resultObject);
+    if(resultObject.length == 0){
+        drawToDoItems(itemsArray);
+    }else{
+        drawToDoItems(resultObject);
+    }
 }
 function filterDate() {
         if(isDateFilterUsed === false){
