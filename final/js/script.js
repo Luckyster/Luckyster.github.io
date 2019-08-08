@@ -1,32 +1,26 @@
-let dots  = document.querySelectorAll('slider__toggle'),
-    dotsArea  = document.querySelector(".slider__toggles")[0],
-    slides = document.querySelectorAll('slider__item'),
-    slideIndex = 1;
-
+let slides = document.getElementsByClassName("slider__item");
+let dots = document.getElementsByClassName("slider__toggle");
+var slideIndex = 1;
+console.log(slides);
 showSlides(slideIndex);
+addEvents();
+function addEvents() {
+   for(let i = 0; i < dots.length; i++){
+       dots[i].addEventListener('click',currentSlide);
+   }
+}
 
-function showSlides(n){
-    if(n < 1){
-        slideIndex = slides.length;
-    } else if(n > slides.length){
-        slideIndex = 1;
-    }
-    for(let i = 0; i < slides.length; i++){
-        slides[i].style.display = 'none';
-    }
-    for(let i = 0; i < dots.length; i++){
-        dots[i].classList.remove('active');
-    }
-    slides[slideIndex - 1].style.display = 'block';
-    dots[slideIndex - 1].classList.add('active');
+function currentSlide() {
+    showSlides(parseInt(this.innerHTML));
+    console.log(typeof (parseInt(this.innerHTML)));
 }
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
-dotsArea.onclick = function (dotNum) {
-    for(let i = 0; i < dots.length + 1; i++){
-        if(dotNum.target.classList.contains('slider__toggles') && dotNum.target == dots[i - 1]){
-            currentSlide(i);
-        }
+function showSlides(slideIndex) {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" slider__toggle--active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " slider__toggle--active";
 }
