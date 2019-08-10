@@ -134,6 +134,7 @@ img{
     display: flex;
     width: 400%;
     left: 0;
+    transition-duration: .5s;
 }
 .slider__wrapper{
     width: 100%;
