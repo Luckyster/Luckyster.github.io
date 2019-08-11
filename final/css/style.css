@@ -154,7 +154,7 @@ img{
     top: 50%;
 }
 .slider__arrow:hover{
-    color: #00e0d0;
+    fill: #00e0d0;
 }
 .slider__arrow--left{
     left: 0;
@@ -187,8 +187,6 @@ img{
     transmiton: .2s;
 }
 .slider__toggle:hover{
-    width: 17px;
-    height: 17px;
     border-color: #00e0d0;
     border-radius: 0;
 }
